@@ -57,17 +57,8 @@ test_that("includedType works", {
 
 test_that("openNow works", {
 
-  t6 <- text_search(textQuery = "restaurants in Alandroal", rankPreference = "RELEVANCE")
-  t8 <- text_search(textQuery = "restaurants in Alandroal", openNow = "true")
-
-  expect_gte(dim(t6$places)[1], dim(t8$places)[1])
-})
-
-
-test_that("openNow works", {
-
-  t6 <- text_search(textQuery = "restaurants in Alandroal", rankPreference = "RELEVANCE")
-  t8 <- text_search(textQuery = "restaurants in Alandroal", openNow = "true")
+  t6 <- text_search(textQuery = "restaurants in New York", rankPreference = "RELEVANCE")
+  t8 <- text_search(textQuery = "restaurants in New York", openNow = "true")
 
   expect_gte(dim(t6$places)[1], dim(t8$places)[1])
 })
