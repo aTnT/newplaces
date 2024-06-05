@@ -14,7 +14,7 @@ Imports:
     tidyjson (>= 0.3.2),
     tidyr,
     askpass,
-    stringr
+    stringr (>= 1.5.0)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Suggests: 
