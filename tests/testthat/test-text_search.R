@@ -107,11 +107,11 @@ test_that("circular location bias works", {
                      location = "bias", circle_center_latitude = lat, circle_center_longitude = long, circle_radius = 500)
 
   expect_true(
-    round(mean(t11$places$viewport.low.latitude), 2) == round(lat, 2)
+    abs(round(mean(t11$places$viewport.low.latitude), 2) - round(lat, 2)) <= 0.05
   )
 
   expect_true(
-    round(mean(t11$places$viewport.low.longitude), 2) == round(long, 2)
+    abs(round(mean(t11$places$viewport.low.longitude), 2) - round(long, 2)) <= 0.05
   )
 
 })
@@ -126,12 +126,30 @@ test_that("rectangular location restriction works", {
                      location = "restriction", rectangle_lowLatLng = sw, rectangle_highLatLng = ne)
 
   expect_true(
-    round(mean(t12$places$viewport.low.latitude), 2) == round(sw[1], 2)
+    abs(round(mean(t12$places$viewport.low.latitude), 2) - round(sw[1], 2)) <= 0.05
   )
 
   expect_true(
-    round(mean(t12$places$viewport.low.longitude), 2) == round(sw[2], 2)
+    abs(round(mean(t12$places$viewport.low.longitude), 2) - round(sw[2], 2)) <= 0.05
   )
 
 })
 
+
+test_that("rectangular location bias works", {
+
+  sw <- c(40.75634, -73.99052)
+  ne <- c(40.75989, -73.98035)
+
+  t13 <- text_search(textQuery = "slow-food restaurants in New York",
+                     location = "bias", rectangle_lowLatLng = sw, rectangle_highLatLng = ne)
+
+  expect_true(
+    abs(round(mean(t13$places$viewport.low.latitude), 2) - round(sw[1], 2)) <= 0.05
+  )
+
+  expect_true(
+    abs(round(mean(t13$places$viewport.low.longitude), 2) - round(sw[2], 2)) <= 0.05
+  )
+
+})

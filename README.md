@@ -1,3 +1,9 @@
+  <!-- badges: start -->
+  [![R-CMD-check](https://github.com/aTnT/newplaces/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/aTnT/newplaces/actions/workflows/R-CMD-check.yaml)
+  [![Code coverage](https://codecov.io/github/aTnT/newplaces/graph/badge.svg?token=EFM3R4SUZI)](https://codecov.io/github/aTnT/newplaces)
+  <!-- badges: end -->
+
+
 # newplaces
 
 This is a R-wrapper package to the [Google Places API (New)](https://developers.google.com/maps/documentation/places/web-service/op-overview). 

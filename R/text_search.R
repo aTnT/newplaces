@@ -134,7 +134,7 @@ text_search <- function(textQuery = NULL,
       body$circle <- innerBody
       locationBias <- body
 
-    } else if (location == "bias" & (is.null(circle_center_latitude) | is.null(circle_center_longitude) | is.null(circle_radius)) |
+    } else if (location == "bias" & (is.null(circle_center_latitude) | is.null(circle_center_longitude) | is.null(circle_radius)) &
                location == "bias" & (is.null(rectangle_lowLatLng) | is.null(rectangle_highLatLng) )) {
       stop(
         "(circle_center_latitude, circle_center_longitude and circle_radius) OR (rectangle_lowLatLng and rectangle_highLatLng) cannot be NULL with location=\"bias\" case"
@@ -143,7 +143,7 @@ text_search <- function(textQuery = NULL,
     } else if (location == "bias" &
                !is.null(rectangle_lowLatLng) & !is.null(rectangle_highLatLng)) {
       cat(location, "location type with rectangular viewport\n")
-      locationBias = NULL
+      locationRestriction = NULL
 
       # Creating locationBias object:
       body <- list()
