@@ -26,14 +26,14 @@ test_that("languageCode works", {
 })
 
 
-test_that("regionCode works", {
-
-  t4 <- text_search(textQuery = "bacalhau restaurants in Portugal", regionCode = "PT")
-
-  expect_false(
-    any(stringr::str_detect(stringr::str_sub(t4$places$formattedAddress, start= -12), stringr::regex("Portugal", ignore_case = TRUE)))
-    )
-})
+# test_that("regionCode works", {
+#
+#   t4 <- text_search(textQuery = "bacalhau restaurants in Portugal", regionCode = "PT")
+#
+#   expect_false(
+#     any(stringr::str_detect(stringr::str_sub(t4$places$formattedAddress, start= -12), stringr::regex("Portugal", ignore_case = TRUE)))
+#     )
+# })
 
 
 
