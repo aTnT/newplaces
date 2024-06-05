@@ -211,21 +211,21 @@ text_search <- function(textQuery = NULL,
   } else if (length(resp$body) >= 5) {
 
     # Converting resp into a structured tibble:
-    tryCatch(
+    places <- tryCatch(
       {
-        places <- res$places |> tidyjson::spread_all()
+        res$places |> tidyjson::spread_all()
       },
-      error = function(e) {places <- NA}
+      error = function(e) NA
     )
 
     # Inspecting response data structure:
     #insp <- res$places |> gather_object |> json_types |> count(name, type) #|> select(type == "array")
 
     # Extracting nested arrays and merging to main tibble:
-    tryCatch(
+    places_types <- tryCatch(
       {
         suppressWarnings(
-          places_types <- res$places |>
+          res$places |>
             tidyjson::enter_object(types) |>
             #tidyjson::gather_array() |>
             tidyjson::spread_all() |>
@@ -235,13 +235,13 @@ text_search <- function(textQuery = NULL,
             tidyr::unnest(types.includedType)
         )
       },
-      error = function(e) {places_types <- NA}
+      error = function(e) NA
     )
 
-    tryCatch(
+    places_reviews <- tryCatch(
       {
         suppressWarnings(
-          places_reviews <- res$places |>
+          res$places |>
             tidyjson::enter_object(reviews) |>
             tidyjson::gather_array() |>
             tidyjson::spread_all()  |>
@@ -252,13 +252,13 @@ text_search <- function(textQuery = NULL,
             dplyr::distinct(document.id, reviews.name, reviews.publishTime, .keep_all = TRUE)
         )
       },
-      error = function(e) {places_reviews <- NA}
+      error = function(e) NA
     )
 
-    tryCatch(
+    places_photos <- tryCatch(
       {
         suppressWarnings(
-          places_photos <- res$places |>
+          res$places |>
             tidyjson::enter_object(photos) |>
             tidyjson::gather_array() |>
             tidyjson::spread_all() |>
@@ -269,7 +269,7 @@ text_search <- function(textQuery = NULL,
             dplyr::distinct(document.id, photos.name, .keep_all = TRUE)
         )
       },
-      error = function(e) {places_photos <- NA}
+      error = function(e) NA
     )
 
 
