@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
 
     steps:
       - uses: actions/checkout@v4
